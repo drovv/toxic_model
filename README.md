@@ -14,7 +14,6 @@
 ## Установка
 
 ```powershell
-cd C:\Dev\Python\toxic_model
 pip install -r requirements.txt
 ```
 
