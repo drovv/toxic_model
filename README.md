@@ -18,7 +18,6 @@
 ## Установка
 
 ```powershell
-cd <dir>
 pip install -r requirements.txt
 ```
 
