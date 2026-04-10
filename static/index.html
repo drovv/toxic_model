@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Проверка токсичности текста</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+    <main class="card">
+        <h1>Проверка токсичности</h1>
+        <p>Введите текст, сервис отправит его в модель и покажет результат.</p>
+
+        <textarea id="text" placeholder="Например: Ты опять несешь какой-то бред."></textarea>
+
+        <div class="actions">
+            <button id="submit" type="button">Проверить</button>
+            <span id="status" class="status"></span>
+        </div>
+
+        <section id="result" class="result" aria-live="polite">
+            <h2 id="result-title" class="result-title"></h2>
+            <p id="result-meta" class="result-meta"></p>
+        </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

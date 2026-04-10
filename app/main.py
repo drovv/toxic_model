@@ -1,4 +1,8 @@
+from pathlib import Path
+
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.model import predict_texts
 from app.schemas import (
@@ -9,6 +13,15 @@ from app.schemas import (
 
 
 app = FastAPI(title="Токсичность текста", version="0.1.0")
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+INDEX_PATH = BASE_DIR / "static" / "index.html"
+app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
+
+
+@app.get("/")
+def index() -> FileResponse:
+    return FileResponse(INDEX_PATH)
 
 
 @app.get("/health")

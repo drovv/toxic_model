@@ -1,42 +1,62 @@
-# Toxic Text Classifier API
+﻿# Toxic Text Classifier
 
 Простой сервис на `FastAPI` для определения токсичности текста.
 
 ## Структура проекта
 
-- `app/main.py` - API-приложение
+- `app/main.py` - FastAPI-приложение и роуты
 - `app/model.py` - загрузка модели и инференс
-- `app/preprocessing.py` - функция препроцессинга
+- `app/preprocessing.py` - препроцессинг текста
 - `app/schemas.py` - схемы запросов и ответов
-- `train.py` - обучение и сохранение пайплайна
+- `static/index.html` - HTML-страница
+- `static/styles.css` - стили фронта
+- `static/app.js` - логика фронта
+- `train.py` - обучение модели
+- `artifacts/pipeline.pkl` - обученный пайплайн
 - `labeled.csv` - датасет
 
 ## Установка
 
 ```powershell
-cd C:\Dev\Python\toxic_model
+cd <dir>
 pip install -r requirements.txt
 ```
 
 ## Обучение модели
 
+Если модели еще нет или нужно переобучить:
+
 ```powershell
 python train.py
 ```
 
-После обучения модель будет сохранена в:
+После этого модель сохранится в:
 
 ```text
 artifacts/pipeline.pkl
 ```
 
-## Запуск API
+## Запуск
 
 ```powershell
 uvicorn app.main:app --reload
 ```
 
-## Эндпоинты
+## Веб-интерфейс
+
+После запуска откройте:
+
+```text
+http://127.0.0.1:8000/
+```
+
+На странице можно ввести текст и получить ответ:
+- `токсичный`
+- `не токсичный`
+
+Также показывается вероятность токсичности.
+
+## API
 
 ### Проверка состояния
 
@@ -44,29 +64,29 @@ uvicorn app.main:app --reload
 GET /health
 ```
 
-### Предсказание для одной строки
+### Предсказание для одного текста
 
 ```http
 POST /predict
 Content-Type: application/json
 ```
 
-Пример тела запроса:
+Пример запроса:
 
 ```json
 {
-  "text": "Ты ведешь себя грубо и провоцируешь конфликт."
+  "text": "Ты опять несешь какой-то бред."
 }
 ```
 
-### Предсказание для списка строк
+### Предсказание для списка текстов
 
 ```http
 POST /predict-batch
 Content-Type: application/json
 ```
 
-Пример тела запроса:
+Пример запроса:
 
 ```json
 {

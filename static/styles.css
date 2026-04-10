@@ -1,0 +1,145 @@
+:root {
+    color-scheme: light;
+    --panel: rgba(255, 250, 244, 0.94);
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #d6c6b2;
+    --accent: #c2410c;
+    --success-soft: #dcfce7;
+    --danger-soft: #fee2e2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, #fde68a 0, transparent 28%),
+        linear-gradient(135deg, #f5efe6 0%, #efe2d1 100%);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.card {
+    width: min(100%, 760px);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(82, 54, 24, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    margin: 0 0 10px;
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1;
+}
+
+p {
+    margin: 0 0 20px;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 180px;
+    resize: vertical;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 16px;
+    font: inherit;
+    color: var(--text);
+    background: #fff;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(194, 65, 12, 0.12);
+}
+
+.actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+button {
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 22px;
+    font: inherit;
+    font-weight: 600;
+    color: white;
+    background: var(--accent);
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+}
+
+.status {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.result {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px solid transparent;
+    display: none;
+}
+
+.result.show {
+    display: block;
+}
+
+.result.toxic {
+    background: var(--danger-soft);
+    border-color: #fca5a5;
+}
+
+.result.safe {
+    background: var(--success-soft);
+    border-color: #86efac;
+}
+
+.result-title {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.result-meta {
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .card {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    textarea {
+        min-height: 160px;
+    }
+}
