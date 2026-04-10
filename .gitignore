@@ -6,3 +6,4 @@ venv/
 artifacts/
 .ipynb_checkpoints/
 toxic_model.ipynb
+.vscode
